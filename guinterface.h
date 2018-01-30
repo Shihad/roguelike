@@ -16,6 +16,11 @@ public:
 
 
 signals:
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+    void findHero();
 
 public slots:
 

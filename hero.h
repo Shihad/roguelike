@@ -9,13 +9,15 @@ class Hero : public QObject
     Q_OBJECT
 public:
     explicit Hero(QObject *parent = 0);
+
+    int currentMapArray[50][50];
+public slots:
     void moveUp();
     void moveDown();
     void moveLeft();
     void moveRight();
-    void setPos(int x, int y);
+  //  void setPos(int x, int y);
     void findHero();
-    int currentMapArray[50][50];
 
 signals:
 

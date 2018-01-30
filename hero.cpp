@@ -43,6 +43,8 @@ void Hero::moveDown() {
 
 
 void Hero::moveRight() {
+
+    qDebug()<<"hello1"<<endl;
     if (currentMapArray[x+1][y]!=1) {
         currentMapArray[x+1][y]=99;
         currentMapArray[x][y]=0;
@@ -50,3 +52,14 @@ void Hero::moveRight() {
         y=y+1;
     }
 }
+
+
+void Hero::moveLeft() {
+    if (currentMapArray[x+1][y]!=1) {
+        currentMapArray[x+1][y]=99;
+        currentMapArray[x][y]=0;
+        x=x;
+        y=y+1;
+    }
+}
+
