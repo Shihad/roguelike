@@ -37,29 +37,30 @@ void Hero::moveDown() {
         currentMapArray[x][y+1]=99;
         currentMapArray[x][y]=0;
         x=x;
-        y=y-1;
+        y=y+1;
     }
 }
 
 
 void Hero::moveRight() {
 
-    qDebug()<<"hello1"<<endl;
+
     if (currentMapArray[x+1][y]!=1) {
         currentMapArray[x+1][y]=99;
         currentMapArray[x][y]=0;
-        x=x;
-        y=y+1;
+        x=x+1;
+        y=y;
+        qDebug()<<"hello, i moved right"<<endl;
     }
 }
 
 
 void Hero::moveLeft() {
-    if (currentMapArray[x+1][y]!=1) {
-        currentMapArray[x+1][y]=99;
+    if (currentMapArray[x-1][y]!=1) {
+        currentMapArray[x-1][y]=99;
         currentMapArray[x][y]=0;
-        x=x;
-        y=y+1;
+        x=x-1;
+        y=y;
     }
 }
 

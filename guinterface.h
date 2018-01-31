@@ -6,6 +6,8 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 
+#include <QDebug>
+
 
 class GUInterface : public QObject, public QGraphicsItem
 {
@@ -21,8 +23,6 @@ signals:
     void moveLeft();
     void moveRight();
     void findHero();
-
-public slots:
 
 
 

@@ -7,6 +7,7 @@
 #include "guinterface.h"
 #include "hero.h"
 #include <QKeyEvent>
+#include <QTimer>
 
 
 namespace Ui {
@@ -26,6 +27,9 @@ private:
     Hero *hero;
     GUInterface *gui;
     QGraphicsScene *scene;
+    QTimer *timer;
+private slots:
+    void updateMap();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);

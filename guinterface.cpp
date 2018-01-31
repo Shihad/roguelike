@@ -1,5 +1,6 @@
 #include "guinterface.h"
 
+
 GUInterface::GUInterface(QObject *parent) : QObject(parent), QGraphicsItem()
 {
 
@@ -9,7 +10,7 @@ GUInterface::GUInterface(QObject *parent) : QObject(parent), QGraphicsItem()
 
 QRectF GUInterface::boundingRect() const
 {
-    return QRectF(-80,-80,160,160);
+    return QRectF(-400,-400,800,800);
 }
 
 
@@ -40,12 +41,13 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
         }
 
         }
-      //  qDebug() << endl;
+
        // std::cout<<endl;
-    } {
+    }
+  //  qDebug() << "Привет, я отрисовал элемент" << endl;
 
     Q_UNUSED(option);
-    Q_UNUSED(widget);}
+    Q_UNUSED(widget);
 
 }
 /*

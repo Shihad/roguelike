@@ -30,9 +30,18 @@ Widget::Widget(QWidget *parent) :
     ui->graphicsView->resize(850,850); //изменили размер окна
     scene = new QGraphicsScene();
     ui->graphicsView->setScene(scene);
+    timer = new QTimer();
+    timer->start(25);
+
     ui->graphicsView->setFocus(); //создали сцену
     gui = new GUInterface(); //создали графический объект
+
+    connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
     connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
+
+    connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
+    connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
+    connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
 
 
 
@@ -49,6 +58,7 @@ Widget::Widget(QWidget *parent) :
 
 
 
+
 }
 
 Widget::~Widget()
@@ -59,18 +69,56 @@ Widget::~Widget()
 void Widget::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
     if (key==Qt::Key_W){
-        qDebug()<<"hello"<<endl;
-        this->gui->moveRight();
-
+        this->hero->moveUp();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
                 {
-                    qDebug()<<"h"<<i<<j;
-                   gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
                 }
         }
-        hero->findHero();
-        gui->update(0,0,850,850);
-
     }
+    if (key==Qt::Key_S){
+        this->hero->moveDown();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_D){
+        qDebug()<<"hello"<<endl;
+        this->hero->moveRight();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_A){
+        qDebug()<<"hello"<<endl;
+        this->hero->moveLeft();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+}
+
+void Widget::updateMap() {
+
+    for (int i=0;i<50;i++) {
+            for (int j=0;j<50;j++)
+            {
+                gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+            }
+    }
+    gui->update(-80,-80,160,160);
+    scene->update(0.0,0.0,850.0,850.0);
+    ui->graphicsView->update();
+
+
 }
