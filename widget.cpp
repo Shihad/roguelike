@@ -106,7 +106,14 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-}
+
+
+    if (key==Qt::Key_F){
+        this->hero->atack();//getDamage для теста функции
+
+}        }
+
+
 
 void Widget::updateMap() {
 

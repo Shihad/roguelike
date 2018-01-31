@@ -16,6 +16,8 @@ public slots:
     void moveDown();
     void moveLeft();
     void moveRight();
+    void atack();
+    void getDamage();
   //  void setPos(int x, int y);
     void findHero();
 
@@ -33,6 +35,8 @@ private:
     int intellect=5;
     int agility=5;
     int luck=5;
+    int HP=strength*20;
+    int dmg=endurance*2;
 };
 
 #endif // HERO_H
