@@ -22,6 +22,11 @@ signals:
     void moveDown();
     void moveLeft();
     void moveRight();
+
+    void moveUpRight();
+    void moveDownRight();
+    void moveUpLeft();
+    void moveDownLeft();
     void findHero();
 
 

@@ -64,3 +64,40 @@ void Hero::moveLeft() {
     }
 }
 
+void Hero::moveUpRight()  {
+    if (currentMapArray[x+1][y-1]!=1) {
+        qDebug()<<currentMapArray[x+1][y-1];
+        currentMapArray[x+1][y-1]=99;
+        currentMapArray[x][y]=0;
+        x=x+1;
+        y=y-1;
+    }
+}
+void Hero::moveDownRight()  {
+    if (currentMapArray[x+1][y+1]!=1) {
+        qDebug()<<currentMapArray[x+1][y+1];
+        currentMapArray[x+1][y+1]=99;
+        currentMapArray[x][y]=0;
+        x=x+1;
+        y=y+1;
+    }
+}
+
+void Hero::moveUpLeft()  {
+    if (currentMapArray[x-1][y-1]!=1) {
+        qDebug()<<currentMapArray[x-1][y-1];
+        currentMapArray[x-1][y-1]=99;
+        currentMapArray[x][y]=0;
+        x=x-1;
+        y=y-1;
+    }
+}
+void Hero::moveDownLeft()  {
+    if (currentMapArray[x-1][y+1]!=1) {
+        qDebug()<<currentMapArray[x-1][y+1];
+        currentMapArray[x-1][y+1]=99;
+        currentMapArray[x][y]=0;
+        x=x-1;
+        y=y+1;
+    }
+}

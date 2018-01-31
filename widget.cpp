@@ -38,10 +38,14 @@ Widget::Widget(QWidget *parent) :
 
     connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
     connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
-
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
     connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
     connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
 
 
@@ -99,6 +103,44 @@ void Widget::keyPressEvent(QKeyEvent *event) {
     if (key==Qt::Key_A){
         qDebug()<<"hello"<<endl;
         this->hero->moveLeft();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_E){
+        this->hero->moveUpRight();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_C){
+        this->hero->moveDownRight();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_Q){
+        qDebug()<<"hello"<<endl;
+        this->hero->moveUpLeft();
+        for (int i=0;i<50;i++) {
+                for (int j=0;j<50;j++)
+                {
+                    gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
+                }
+        }
+    }
+    if (key==Qt::Key_Z){
+        qDebug()<<"hello"<<endl;
+        this->hero->moveDownLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
                 {
