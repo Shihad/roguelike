@@ -41,7 +41,6 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
     connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
     connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
-
     connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));

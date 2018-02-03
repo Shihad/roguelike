@@ -23,81 +23,134 @@ void Hero::findHero() {
 }}
 
 void Hero::moveUp() {
-    if (currentMapArray[x][y-1]!=1) {
-        qDebug()<<currentMapArray[x][y-1];
+    int control = currentMapArray[x][y-1];
+    switch (control) {
+    case 1: //It's a wall, can't move
+        qDebug()<<"I can't move";
+        break;
+    default: //There isn't any obstacles, move
         currentMapArray[x][y-1]=99;
         currentMapArray[x][y]=0;
         x=x;
         y=y-1;
+        break;
     }
 }
+
 void Hero::moveDown() {
-    if (currentMapArray[x][y+1]!=1) {
-        qDebug()<<currentMapArray[x][y+1];
+    int control = currentMapArray[x][y+1];
+    switch (control) {
+    case 1:
+        qDebug()<<"I can't move";
+        break;
+    default:
         currentMapArray[x][y+1]=99;
         currentMapArray[x][y]=0;
         x=x;
         y=y+1;
+        break;
     }
 }
 
 
-void Hero::moveRight() {
 
-
-    if (currentMapArray[x+1][y]!=1) {
-        currentMapArray[x+1][y]=99;
-        currentMapArray[x][y]=0;
-        x=x+1;
-        y=y;
-        qDebug()<<"hello, i moved right"<<endl;
-    }
+void Hero::moveRight()
+{
+   int control = currentMapArray[x+1][y];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x+1][y]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y;
+       break;
+   }
 }
 
 
-void Hero::moveLeft() {
-    if (currentMapArray[x-1][y]!=1) {
-        currentMapArray[x-1][y]=99;
-        currentMapArray[x][y]=0;
-        x=x-1;
-        y=y;
-    }
+
+void Hero::moveLeft()
+{
+   int control = currentMapArray[x-1][y];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x-1][y]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y;
+       break;
+   }
 }
 
-void Hero::moveUpRight()  {
-    if (currentMapArray[x+1][y-1]!=1) {
-        qDebug()<<currentMapArray[x+1][y-1];
-        currentMapArray[x+1][y-1]=99;
-        currentMapArray[x][y]=0;
-        x=x+1;
-        y=y-1;
-    }
-}
-void Hero::moveDownRight()  {
-    if (currentMapArray[x+1][y+1]!=1) {
-        qDebug()<<currentMapArray[x+1][y+1];
-        currentMapArray[x+1][y+1]=99;
-        currentMapArray[x][y]=0;
-        x=x+1;
-        y=y+1;
-    }
+void Hero::moveUpRight()
+
+{
+   int control = currentMapArray[x+1][y-1];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x+1][y-1]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y-1;
+       break;
+   }
 }
 
-void Hero::moveUpLeft()  {
-    if (currentMapArray[x-1][y-1]!=1) {
-        qDebug()<<currentMapArray[x-1][y-1];
-        currentMapArray[x-1][y-1]=99;
-        currentMapArray[x][y]=0;
-        x=x-1;
-        y=y-1;
-    }
+void Hero::moveDownRight()
+
+{
+   int control = currentMapArray[x+1][y+1];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x+1][y+1]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y+1;
+       break;
+   }
 }
-void Hero::moveDownLeft()  {
-    if (currentMapArray[x-1][y+1]!=1) {
-        qDebug()<<currentMapArray[x-1][y+1];
-        currentMapArray[x-1][y+1]=99;
-        currentMapArray[x][y]=0;
-        x=x-1;
-        y=y+1;
-    }
+
+void Hero::moveUpLeft()
+
+{
+   int control = currentMapArray[x-1][y-1];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x-1][y-1]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y-1;
+       break;
+   }
+}
+
+void Hero::moveDownLeft()
+{
+   int control = currentMapArray[x-1][y+1];
+   switch (control) {
+   case 1:
+       qDebug()<<"I can't move";
+       break;
+   default:
+       currentMapArray[x-1][y+1]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y+1;
+       break;
+   }
 }
