@@ -12,6 +12,8 @@ public:
     void generateRandomMap();
     void placeHeroInRandomPlace();
     void returnMap();
+
+    void placePickUpInRandomPlace();
     int currentMapArray[50][50];
 
 

@@ -21,6 +21,8 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
+public slots:
+    void takePickUp(int pickup);
 
 private:
     Ui::Widget *ui;

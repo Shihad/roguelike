@@ -11,18 +11,28 @@ public:
     explicit Hero(QObject *parent = 0);
 
     int currentMapArray[50][50];
+    int getHealingPotions();
+
 public slots:
     void moveUp();
     void moveDown();
     void moveLeft();
     void moveRight();
+
+    void moveUpRight();
+    void moveDownRight();
+    void moveUpLeft();
+    void moveDownLeft();
   //  void setPos(int x, int y);
     void findHero();
 
+
 signals:
+    void getPickUp(int pickup);
 
 
 public slots:
+    void takePickUp (int pickup);
 
 private:
     int x,y;
@@ -33,6 +43,7 @@ private:
     int intellect=5;
     int agility=5;
     int luck=5;
+    int healingPotions =0;
 };
 
 #endif // HERO_H

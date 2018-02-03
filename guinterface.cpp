@@ -30,6 +30,12 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
                     case 1: //рисуем стены
                    { painter->drawPixmap(16*i-400,16*j-400, *figPix, 96, 16, 16,16);
                     break; }
+
+                    case 20:
+                         {//Рисуем пикапы
+                             painter->drawPixmap(16*i-400,16*j-400, *figPix,0, 144, 16,16);
+                         break;
+
                     case 99: { //рисуем героя
                          painter->drawPixmap(16*i-400,16*j-400, *figPix, 0, 64, 16,16);
                          break;
@@ -49,7 +55,7 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-}
+}}
 /*
 
 void GUInterface::showMap(int* arr, int m, int n)
