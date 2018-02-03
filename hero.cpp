@@ -1,5 +1,6 @@
 #include "hero.h"
 #include <QDebug>
+#include "roguelikemap.h"
 
 Hero::Hero(QObject *parent) : QObject(parent)
 {
@@ -28,6 +29,14 @@ void Hero::moveUp() {
     case 1: //It's a wall, can't move
         qDebug()<<"I can't move";
         break;
+    case 20: //It's a pickup
+        qDebug()<<"It's a bottle of healing potion!";
+        currentMapArray[x][y-1]=99;
+        currentMapArray[x][y]=0;
+        x=x;
+        y=y-1;
+        break;
+
     default: //There isn't any obstacles, move
         currentMapArray[x][y-1]=99;
         currentMapArray[x][y]=0;
@@ -40,8 +49,15 @@ void Hero::moveUp() {
 void Hero::moveDown() {
     int control = currentMapArray[x][y+1];
     switch (control) {
-    case 1:
+    case 1: //It's a wall, can't move
         qDebug()<<"I can't move";
+        break;
+    case 20: //It's a pickup
+        qDebug()<<"It's a bottle of healing potion!";
+        currentMapArray[x][y+1]=99;
+        currentMapArray[x][y]=0;
+        x=x;
+        y=y+1;
         break;
     default:
         currentMapArray[x][y+1]=99;
@@ -58,8 +74,15 @@ void Hero::moveRight()
 {
    int control = currentMapArray[x+1][y];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x+1][y]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y;
        break;
    default:
        currentMapArray[x+1][y]=99;
@@ -76,8 +99,15 @@ void Hero::moveLeft()
 {
    int control = currentMapArray[x-1][y];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x-1][y]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y;
        break;
    default:
        currentMapArray[x-1][y]=99;
@@ -93,9 +123,17 @@ void Hero::moveUpRight()
 {
    int control = currentMapArray[x+1][y-1];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
        break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x+1][y-1]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y-1;
+       break;
+
    default:
        currentMapArray[x+1][y-1]=99;
        currentMapArray[x][y]=0;
@@ -110,8 +148,15 @@ void Hero::moveDownRight()
 {
    int control = currentMapArray[x+1][y+1];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x+1][y+1]=99;
+       currentMapArray[x][y]=0;
+       x=x+1;
+       y=y+1;
        break;
    default:
        currentMapArray[x+1][y+1]=99;
@@ -127,8 +172,15 @@ void Hero::moveUpLeft()
 {
    int control = currentMapArray[x-1][y-1];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x-1][y-1]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y-1;
        break;
    default:
        currentMapArray[x-1][y-1]=99;
@@ -143,8 +195,15 @@ void Hero::moveDownLeft()
 {
    int control = currentMapArray[x-1][y+1];
    switch (control) {
-   case 1:
+   case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       break;
+   case 20: //It's a pickup
+       qDebug()<<"It's a bottle of healing potion!";
+       currentMapArray[x-1][y+1]=99;
+       currentMapArray[x][y]=0;
+       x=x-1;
+       y=y+1;
        break;
    default:
        currentMapArray[x-1][y+1]=99;
