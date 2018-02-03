@@ -4,7 +4,7 @@
 
 Hero::Hero(QObject *parent) : QObject(parent)
 {
-
+connect(this,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
 }
 
 
@@ -230,4 +230,8 @@ void Hero::takePickUp(int pickup) {
     default:
         break;
     }
+}
+
+int Hero::getHealingPotions() {
+    return healingPotions;
 }

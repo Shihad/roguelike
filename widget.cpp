@@ -26,8 +26,8 @@ Widget::Widget(QWidget *parent) :
 
    // cli.showMap(&map.currentMapArray[0][0],50,50);
 
-    this->resize(900,900);
-    this->setFixedSize(900,900);
+    this->resize(1900,900);
+    this->setFixedSize(1900,900);
     ui->graphicsView->resize(850,850); //изменили размер окна
     scene = new QGraphicsScene();
     ui->graphicsView->setScene(scene);
@@ -46,6 +46,7 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
 
 
 
@@ -69,7 +70,7 @@ Widget::~Widget()
 {
     delete ui;
 }
-
+//обработка нажатий клавиш
 void Widget::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
     if (key==Qt::Key_W){
@@ -159,4 +160,22 @@ void Widget::updateMap() {
     ui->graphicsView->update();
 
 
+}
+
+
+void Widget::takePickUp(int pickup) {
+
+    switch (pickup) {
+
+    case 20:
+        int num = hero->getHealingPotions();
+        QString nums;
+        nums.setNum(num);
+        ui->label_2->setText(nums);
+
+        break;
+
+ //   default:
+  //      break;
+    }
 }
