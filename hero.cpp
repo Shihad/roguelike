@@ -30,6 +30,7 @@ void Hero::moveUp() {
         qDebug()<<"I can't move";
         break;
     case 20: //It's a pickup
+        getPickUp(control);
         qDebug()<<"It's a bottle of healing potion!";
         currentMapArray[x][y-1]=99;
         currentMapArray[x][y]=0;
@@ -53,6 +54,7 @@ void Hero::moveDown() {
         qDebug()<<"I can't move";
         break;
     case 20: //It's a pickup
+        getPickUp(control);
         qDebug()<<"It's a bottle of healing potion!";
         currentMapArray[x][y+1]=99;
         currentMapArray[x][y]=0;
@@ -78,6 +80,7 @@ void Hero::moveRight()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x+1][y]=99;
        currentMapArray[x][y]=0;
@@ -103,6 +106,7 @@ void Hero::moveLeft()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x-1][y]=99;
        currentMapArray[x][y]=0;
@@ -127,6 +131,7 @@ void Hero::moveUpRight()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x+1][y-1]=99;
        currentMapArray[x][y]=0;
@@ -152,6 +157,7 @@ void Hero::moveDownRight()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x+1][y+1]=99;
        currentMapArray[x][y]=0;
@@ -176,6 +182,7 @@ void Hero::moveUpLeft()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x-1][y-1]=99;
        currentMapArray[x][y]=0;
@@ -199,6 +206,7 @@ void Hero::moveDownLeft()
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
+       getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
        currentMapArray[x-1][y+1]=99;
        currentMapArray[x][y]=0;
@@ -212,4 +220,14 @@ void Hero::moveDownLeft()
        y=y+1;
        break;
    }
+}
+
+void Hero::takePickUp(int pickup) {
+    switch (pickup) {
+    case 20:
+        healingPotions++;
+        break;
+    default:
+        break;
+    }
 }

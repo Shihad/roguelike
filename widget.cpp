@@ -91,7 +91,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_D){
-        qDebug()<<"hello"<<endl;
         this->hero->moveRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -101,7 +100,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_A){
-        qDebug()<<"hello"<<endl;
         this->hero->moveLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -129,7 +127,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_Q){
-        qDebug()<<"hello"<<endl;
         this->hero->moveUpLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -139,7 +136,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_Z){
-        qDebug()<<"hello"<<endl;
         this->hero->moveDownLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)

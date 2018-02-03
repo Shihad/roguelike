@@ -25,9 +25,11 @@ public slots:
     void findHero();
 
 signals:
+    void getPickUp(int pickup);
 
 
 public slots:
+    void takePickUp (int pickup);
 
 private:
     int x,y;
@@ -38,6 +40,7 @@ private:
     int intellect=5;
     int agility=5;
     int luck=5;
+    int healingPotions =0;
 };
 
 #endif // HERO_H
