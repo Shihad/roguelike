@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     roguelikemap.cpp \
     clinterface.cpp \
     guinterface.cpp \
-    hero.cpp
+    hero.cpp \
+    enemy.cpp
 
 HEADERS  += widget.h \
     roguelikemap.h \
     clinterface.h \
     guinterface.h \
-    hero.h
+    hero.h \
+    enemy.h
 
 FORMS    += widget.ui
 
