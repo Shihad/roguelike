@@ -12,6 +12,8 @@ Widget::Widget(QWidget *parent) :
     hero = new Hero; //герой
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
+    map.placePickUpInRandomPlace();//размещаем пикапы на карте
+    map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
 
     for (int i=0;i<50;i++) {
@@ -25,8 +27,8 @@ Widget::Widget(QWidget *parent) :
 
    // cli.showMap(&map.currentMapArray[0][0],50,50);
 
-    this->resize(900,900);
-    this->setFixedSize(900,900);
+    this->resize(1900,900);
+    this->setFixedSize(1900,900);
     ui->graphicsView->resize(850,850); //изменили размер окна
     scene = new QGraphicsScene();
     ui->graphicsView->setScene(scene);
@@ -41,6 +43,16 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
     connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
     connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
     connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
@@ -69,7 +81,7 @@ Widget::~Widget()
 {
     delete ui;
 }
-
+//обработка нажатий клавиш
 void Widget::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
     if (key==Qt::Key_W){
@@ -91,7 +103,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_D){
-        qDebug()<<"hello"<<endl;
         this->hero->moveRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -101,7 +112,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_A){
-        qDebug()<<"hello"<<endl;
         this->hero->moveLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -163,4 +173,22 @@ void Widget::updateMap() {
     ui->graphicsView->update();
 
 
+}
+
+
+void Widget::takePickUp(int pickup) {
+
+    switch (pickup) {
+
+    case 20:
+        int num = hero->getHealingPotions();
+        QString nums;
+        nums.setNum(num);
+        ui->label_2->setText(nums);
+
+        break;
+
+ //   default:
+  //      break;
+    }
 }

@@ -11,6 +11,8 @@ public:
     explicit Hero(QObject *parent = 0);
 
     int currentMapArray[50][50];
+    int getHealingPotions();
+
 public slots:
     void moveUp();
     void moveDown();
@@ -24,10 +26,15 @@ public slots:
   //  void setPos(int x, int y);
     void findHero();
 
+
 signals:
+    void getPickUp(int pickup);    
+    void attack(int attackforce);
 
 
 public slots:
+    void takePickUp (int pickup);
+    void attacked(int attackforce);
 
 private:
     int x,y;
@@ -38,6 +45,9 @@ private:
     int intellect=5;
     int agility=5;
     int luck=5;
+    int healingPotions =0;
+    int maxHP;
+    int HP;
 };
 
 #endif // HERO_H
