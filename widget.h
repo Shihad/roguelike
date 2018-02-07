@@ -6,6 +6,7 @@
 #include "clinterface.h"
 #include "guinterface.h"
 #include "hero.h"
+#include "enemy.h"
 #include <QKeyEvent>
 #include <QTimer>
 
@@ -21,6 +22,8 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
+public slots:
+    void takePickUp(int pickup);
 
 private:
     Ui::Widget *ui;
@@ -28,6 +31,7 @@ private:
     GUInterface *gui;
     QGraphicsScene *scene;
     QTimer *timer;
+    Enemy enemy;
 private slots:
     void updateMap();
 
