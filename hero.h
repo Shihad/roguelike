@@ -28,11 +28,13 @@ public slots:
 
 
 signals:
-    void getPickUp(int pickup);
+    void getPickUp(int pickup);    
+    void attack(int attackforce);
 
 
 public slots:
     void takePickUp (int pickup);
+    void attacked(int attackforce);
 
 private:
     int x,y;
@@ -44,6 +46,8 @@ private:
     int agility=5;
     int luck=5;
     int healingPotions =0;
+    int maxHP;
+    int HP;
 };
 
 #endif // HERO_H

@@ -13,6 +13,7 @@ Widget::Widget(QWidget *parent) :
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
+    map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
 
     for (int i=0;i<50;i++) {
@@ -47,6 +48,16 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
     connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
 
 
@@ -128,6 +139,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_Q){
+        qDebug()<<"hello"<<endl;
         this->hero->moveUpLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -137,6 +149,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (key==Qt::Key_Z){
+        qDebug()<<"hello"<<endl;
         this->hero->moveDownLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)

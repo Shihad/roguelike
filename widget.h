@@ -6,6 +6,7 @@
 #include "clinterface.h"
 #include "guinterface.h"
 #include "hero.h"
+#include "enemy.h"
 #include <QKeyEvent>
 #include <QTimer>
 
@@ -30,6 +31,7 @@ private:
     GUInterface *gui;
     QGraphicsScene *scene;
     QTimer *timer;
+    Enemy enemy;
 private slots:
     void updateMap();
 
