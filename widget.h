@@ -31,7 +31,7 @@ private:
     GUInterface *gui;
     QGraphicsScene *scene;
     QTimer *timer;
-    Enemy enemy;
+    Enemy *enemy;
 private slots:
     void updateMap();
 
