@@ -13,6 +13,7 @@ Widget::Widget(QWidget *parent) :
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
+    map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
 
     for (int i=0;i<50;i++) {

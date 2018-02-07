@@ -24,6 +24,7 @@ void Hero::findHero() {
 }}
 
 void Hero::moveUp() {
+    int attackForce = round((strength + agility)/2);
     int control = currentMapArray[x][y-1];
     switch (control) {
     case 1: //It's a wall, can't move
@@ -36,6 +37,12 @@ void Hero::moveUp() {
         currentMapArray[x][y]=0;
         x=x;
         y=y-1;
+        break;
+    case 40: //It's an enemy
+
+        qDebug()<<"It's an enemy!";
+        qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+        attack(attackForce);
         break;
 
     default: //There isn't any obstacles, move
@@ -230,6 +237,11 @@ void Hero::takePickUp(int pickup) {
     default:
         break;
     }
+}
+
+void Hero::attacked(int attackforce)
+{
+    qDebug()<<"I was hit!";
 }
 
 int Hero::getHealingPotions() {

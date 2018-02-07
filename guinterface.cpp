@@ -26,14 +26,19 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
      * */ for(int i = 0; i < 50; i++) {
         for(int j = 0; j < 50; j++) {
             int a = currentMapArray[i][j];
+
                     switch (a) {
                     case 1: //рисуем стены
-                   { painter->drawPixmap(16*i-400,16*j-400, *figPix, 96, 16, 16,16);
-                    break; }
+                    painter->drawPixmap(16*i-400,16*j-400, *figPix, 96, 16, 16,16);
+                    break;
 
                     case 20:
-                         {//Рисуем пикапы
+                         //Рисуем пикапы
                              painter->drawPixmap(16*i-400,16*j-400, *figPix,0, 144, 16,16);
+                         break;
+                    case 40:
+                        //Рисуем врагов
+                             painter->drawPixmap(16*i-400,16*j-400, *figPix,96, 96, 16,16);
                          break;
 
                     case 99: { //рисуем героя
@@ -55,7 +60,7 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-}}
+}
 /*
 
 void GUInterface::showMap(int* arr, int m, int n)

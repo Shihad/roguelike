@@ -57,3 +57,17 @@ void RoguelikeMap::placePickUpInRandomPlace() {
                  }
             }
 }}
+
+
+void RoguelikeMap::placeEnemyInRandomPlace() {
+    for (int i=1;i<49;i++) {
+            for (int j=1;j<49;j++)
+            {
+                 int a = rand()%25; //
+                 if ((a==1) and(mapArray[i][j]!=1)) {
+                     mapArray[i][j]=40;
+
+
+                 }
+            }
+}}

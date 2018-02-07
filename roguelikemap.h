@@ -17,6 +17,7 @@ public:
     int currentMapArray[50][50];
 
 
+    void placeEnemyInRandomPlace();
 signals:
 
 public slots:

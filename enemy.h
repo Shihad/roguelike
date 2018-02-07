@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QKeyEvent>
+#include <QDebug>
 
 class Enemy : public QObject
 {
