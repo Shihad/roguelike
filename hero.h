@@ -18,7 +18,6 @@ public slots:
     void moveDown();
     void moveLeft();
     void moveRight();
-    void lvlUp(int apr);
 
 
     void moveUpRight();
@@ -52,7 +51,7 @@ private:
     int luck=5;
     int healingPotions =0;
     int maxHP;
-    int HP;
+   int HP=5*strength;
 };
 
 #endif // HERO_H

@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QDebug>
+#include "hero.h"
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -190,8 +191,8 @@ void Widget::takePickUp(int pickup) {
   //      break;
     }
 }
-
+/*
 void Widget::on_pushButton_clicked()
 {
 
-}
+}*/
