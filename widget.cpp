@@ -10,6 +10,7 @@ Widget::Widget(QWidget *parent) :
  //   CLInterface cli; //интерфейс командной строки
     RoguelikeMap map; //карта
     hero = new Hero; //герой
+    enemy = new Enemy; //враг
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
@@ -39,6 +40,9 @@ Widget::Widget(QWidget *parent) :
     gui = new GUInterface(); //создали графический объект
 
     connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
+
+    connect(hero,SIGNAL(sendHP(int)),this,SLOT(updateHP(int)));
+
     connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
     connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
@@ -49,6 +53,11 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
     connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
 
+    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
+
+    connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
+    connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
+
     connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
@@ -58,6 +67,8 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+
+
 
 
 
@@ -191,4 +202,11 @@ void Widget::takePickUp(int pickup) {
  //   default:
   //      break;
     }
+}
+
+void Widget::updateHP(int HP)
+{
+    QString nums;
+    nums.setNum(HP);
+    ui->label_4->setText(nums);
 }
