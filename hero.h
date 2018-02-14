@@ -12,6 +12,8 @@ public:
 
     int currentMapArray[50][50];
     int getHealingPotions();
+    int drinkPotions();
+
 
 public slots:
     void moveUp();
@@ -28,7 +30,12 @@ public slots:
 
 
 signals:
-    void getPickUp(int pickup);
+    void getPickUp(int pickup);    
+  //  void drinkPotSig();
+    void attack(int attackforce,int x, int y);
+    void sendHP(int HealPoints);
+
+
 
 
 public slots:
@@ -43,7 +50,8 @@ private:
     int intellect=5;
     int agility=5;
     int luck=5;
-    int healingPotions =0;
+    int HP=25;
+    int healingPotions=0;
 };
 
 #endif // HERO_H
