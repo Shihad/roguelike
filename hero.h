@@ -33,7 +33,6 @@ signals:
     void attack(int attackforce,int x, int y);
     void sendHP(int HealPoints);
 
-    void attack(int attackforce, int x, int y);
 
 
 

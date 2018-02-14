@@ -32,6 +32,5 @@ if (HP<0) {
     enemydied(x,y);
     HP=maxHP;}
 
-}
-
+}}
 

@@ -35,7 +35,6 @@ private:
 
     int maxHP=12;
 
-    int maxHP=14;
 
     int HP;
 
