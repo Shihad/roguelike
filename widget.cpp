@@ -102,6 +102,14 @@ Widget::~Widget()
 //обработка нажатий клавиш
 void Widget::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
+    if (key==Qt::Key_P)
+    {
+        int num = hero->drinkPotions();
+        QString nums;
+            nums.setNum(num);
+            ui->label_2->setText(nums);
+
+    }
     if (key==Qt::Key_W){
         this->hero->moveUp();
         for (int i=0;i<50;i++) {

@@ -368,3 +368,15 @@ void Hero::attacked(int attackforce)
 int Hero::getHealingPotions() {
     return healingPotions;
 }
+
+
+int Hero::drinkPotions()
+{  
+    if (healingPotions==!0)
+    {
+        healingPotions--;
+        HP=HP+5;
+        qDebug()<<"I drink potion!";
+    }
+return healingPotions;
+}

@@ -12,6 +12,8 @@ public:
 
     int currentMapArray[50][50];
     int getHealingPotions();
+    int drinkPotions();
+
 
 public slots:
     void moveUp();
@@ -50,6 +52,7 @@ private:
     int charisma=5;
     int intellect=5;
     int agility=5;
+
     int luck=8;
     int healingPotions =0;
     int maxHP;
