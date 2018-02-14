@@ -6,6 +6,7 @@ HP=maxHP;
 }
 
 void Enemy::attacked(int attackforce, int x, int y)
+
 { qDebug()<<"Enemy was attacked";
 HP=HP-attackforce+ round (endurance/3);
 qDebug()<<"Enemy has " << HP << " left";
@@ -20,7 +21,17 @@ qDebug()<<"It's a critical hit! I was heavy wounded!";}
 else {
     attackF = round((strength)/3);}
 attack(attackF);
+
+
+{
+    qDebug()<<"Enemy was attacked";
+HP=HP-attackforce + round (endurance/3);
+qDebug()<<"enemy has "<<HP <<" HP left";
+
+if (HP<0) {
+    enemydied(x,y);
+    HP=maxHP;}
+
 }
 
 
-void attacked(int attackforce);

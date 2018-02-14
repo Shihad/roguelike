@@ -10,7 +10,9 @@ Widget::Widget(QWidget *parent) :
  //   CLInterface cli; //интерфейс командной строки
     RoguelikeMap map; //карта
     hero = new Hero; //герой
+
     enemy = new Enemy; //враг
+
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
@@ -38,10 +40,14 @@ Widget::Widget(QWidget *parent) :
 
     ui->graphicsView->setFocus(); //создали сцену
     gui = new GUInterface(); //создали графический объект
-
+//отрисовка сцены
     connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
 
+
     connect(hero,SIGNAL(sendHP(int)),this,SLOT(updateHP(int)));
+
+
+    //движение
 
     connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
@@ -51,7 +57,7 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
-    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
+
 
     connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
 
@@ -63,10 +69,11 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
-    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
-    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
-    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
-    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+    connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
+    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+    connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
+
+
 
 
 

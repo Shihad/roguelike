@@ -29,8 +29,12 @@ public slots:
 
 signals:
     void getPickUp(int pickup);    
+
     void attack(int attackforce,int x, int y);
     void sendHP(int HealPoints);
+
+    void attack(int attackforce, int x, int y);
+
 
 
 public slots:
