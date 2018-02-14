@@ -31,7 +31,7 @@ public slots:
 
 signals:
     void getPickUp(int pickup);    
-  //  void drinkPotSig();
+
     void attack(int attackforce,int x, int y);
     void sendHP(int HealPoints);
 
@@ -40,6 +40,9 @@ signals:
 
 public slots:
     void takePickUp (int pickup);
+    void attacked(int attackforce);
+    void killEnemyInXY(int x, int y);
+
 
 private:
     int x,y;
@@ -49,9 +52,11 @@ private:
     int charisma=5;
     int intellect=5;
     int agility=5;
-    int luck=5;
-    int HP=25;
-    int healingPotions=0;
+
+    int luck=8;
+    int healingPotions =0;
+    int maxHP;
+    int HP;
 };
 
 #endif // HERO_H

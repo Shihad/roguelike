@@ -17,9 +17,11 @@ public:
     int currentMapArray[50][50];
 
 
+    void placeEnemyInRandomPlace();
 signals:
 
 public slots:
+    void killEnemyInXY(int x, int y);
 
 private:
     int mapArray[50][50];
