@@ -70,4 +70,10 @@ void RoguelikeMap::placeEnemyInRandomPlace() {
 
                  }
             }
-}}
+    }}
+
+void RoguelikeMap::killEnemyInXY(int x, int y)
+{
+    currentMapArray[x][y]=0;
+   // qDebug()<<"enemy was killed";
+}

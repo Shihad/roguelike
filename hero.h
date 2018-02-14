@@ -31,12 +31,13 @@ public slots:
 
 signals:
     void getPickUp(int pickup);    
-    void attack(int attackforce);
+    void attack(int attackforce, int x, int y);
 
 
 public slots:
     void takePickUp (int pickup);
     void attacked(int attackforce);
+    void killEnemyInXY(int x, int y);
 
 private:
     int exp=0;

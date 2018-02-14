@@ -46,6 +46,13 @@ void Hero::findHero() {
             }
 }}
 
+
+void Hero::killEnemyInXY(int x, int y)
+{
+    currentMapArray[x][y]=0;
+    qDebug()<<"enemy was killed";
+}
+
 void Hero::moveUp() {
     int attackForce = round((strength + agility)/2);
     int control = currentMapArray[x][y-1];
@@ -65,7 +72,7 @@ void Hero::moveUp() {
 
         qDebug()<<"It's an enemy!";
         qDebug()<<"I hit him with my sword for " << attackForce << " HP";
-        attack(attackForce);
+        attack(attackForce,x,y-1);
         break;
 
     default: //There isn't any obstacles, move
