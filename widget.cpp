@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QDebug>
+#include "hero.h"
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -186,6 +187,8 @@ void Widget::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+//>>>>>>> refs/remotes/origin/develop
+
 void Widget::updateMap() {
 
     for (int i=0;i<50;i++) {
@@ -218,6 +221,11 @@ void Widget::takePickUp(int pickup) {
   //      break;
     }
 }
+/*
+void Widget::on_pushButton_clicked()
+{
+
+}*/
 
 void Widget::updateHP(int HP)
 {
