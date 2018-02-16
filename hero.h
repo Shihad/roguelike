@@ -12,6 +12,8 @@ public:
 
     int currentMapArray[50][50];
     int getHealingPotions();
+    int drinkPotions();
+
 
 public slots:
     void moveUp();
@@ -30,13 +32,18 @@ public slots:
 
 signals:
     void getPickUp(int pickup);    
-    void attack(int attackforce, int x, int y);
+
+    void attack(int attackforce,int x, int y);
+    void sendHP(int HealPoints);
+
+
 
 
 public slots:
     void takePickUp (int pickup);
     void attacked(int attackforce);
     void killEnemyInXY(int x, int y);
+
 
 private:
     int exp=0;
@@ -48,7 +55,8 @@ private:
     int charisma=5;
     int intellect=5;
     int agility=5;
-    int luck=5;
+
+    int luck=8;
     int healingPotions =0;
     int maxHP;
    int HP=5*strength;

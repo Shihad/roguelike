@@ -35,7 +35,7 @@
      <x>1150</x>
      <y>40</y>
      <width>101</width>
-     <height>61</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -46,9 +46,35 @@
    <property name="geometry">
     <rect>
      <x>1260</x>
-     <y>60</y>
+     <y>46</y>
      <width>54</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>1150</x>
+     <y>80</y>
+     <width>101</width>
      <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>HP:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>1263</x>
+     <y>80</y>
+     <width>41</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">

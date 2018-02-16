@@ -24,6 +24,7 @@ public:
     ~Widget();
 public slots:
     void takePickUp(int pickup);
+    void updateHP(int HP);
 
 private:
     Ui::Widget *ui;

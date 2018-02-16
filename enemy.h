@@ -13,7 +13,11 @@ public:
 
 signals:
     void attack(int attackforce);
+
+    void enemyWasKilled(int x, int y);
+
     void enemydied(int x, int y);
+
 
 public slots:
     void attacked(int attackforce, int x, int y);
@@ -26,9 +30,12 @@ private:
     int charisma=5;
     int intellect=5;
     int agility=5;
-    int luck=5;
+    int luck=2;
     int healingPotions =0;
-    int maxHP=14;
+
+    int maxHP=12;
+
+
     int HP;
 
 };

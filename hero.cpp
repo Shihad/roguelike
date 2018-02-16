@@ -3,7 +3,10 @@
 #include "roguelikemap.h"
 
 Hero::Hero(QObject *parent) : QObject(parent)
-{
+{maxHP=endurance*5;
+    HP=maxHP;
+    qDebug()<<"HitPoints -" <<HP<<" of "<< maxHP;
+
 connect(this,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
 }
 
@@ -27,11 +30,18 @@ void Hero::findHero() {
 void Hero::killEnemyInXY(int x, int y)
 {
     currentMapArray[x][y]=0;
-    qDebug()<<"enemy was killed";
+    qDebug()<<"Enemy was killed";
 }
 
 void Hero::moveUp() {
-    int attackForce = round((strength + agility)/2);
+    sendHP(HP);
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
+
     int control = currentMapArray[x][y-1];
     switch (control) {
     case 1: //It's a wall, can't move
@@ -64,6 +74,15 @@ void Hero::moveUp() {
 }
 
 void Hero::moveDown() {
+    sendHP(HP);
+
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
+
     int control = currentMapArray[x][y+1];
     switch (control) {
     case 1: //It's a wall, can't move
@@ -77,6 +96,13 @@ void Hero::moveDown() {
         x=x;
         y=y+1;
         break;
+
+    case 40: //It's an enemy
+
+        qDebug()<<"It's an enemy!";
+        qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+        attack(attackForce,x,y+1);
+        break;
     default:
         currentMapArray[x][y+1]=99;
         currentMapArray[x][y]=0;
@@ -89,7 +115,14 @@ void Hero::moveDown() {
 
 
 void Hero::moveRight()
-{
+{ sendHP(HP);
+
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
    int control = currentMapArray[x+1][y];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -103,6 +136,13 @@ void Hero::moveRight()
        x=x+1;
        y=y;
        break;
+
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x+1,y);
+       break;
    default:
        currentMapArray[x+1][y]=99;
        currentMapArray[x][y]=0;
@@ -115,7 +155,15 @@ void Hero::moveRight()
 
 
 void Hero::moveLeft()
-{
+{ sendHP(HP);
+
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);}
+    else {
+        attackForce = round((strength)/3);
+    qDebug()<<"It's a marvellous hit!";}
+
    int control = currentMapArray[x-1][y];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -129,6 +177,13 @@ void Hero::moveLeft()
        x=x-1;
        y=y;
        break;
+
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x-1,y);
+       break;
    default:
        currentMapArray[x-1][y]=99;
        currentMapArray[x][y]=0;
@@ -140,7 +195,14 @@ void Hero::moveLeft()
 
 void Hero::moveUpRight()
 
-{
+{ sendHP(HP);
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
+
    int control = currentMapArray[x+1][y-1];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -155,6 +217,13 @@ void Hero::moveUpRight()
        y=y-1;
        break;
 
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x+1,y-1);
+       break;
+
    default:
        currentMapArray[x+1][y-1]=99;
        currentMapArray[x][y]=0;
@@ -166,7 +235,13 @@ void Hero::moveUpRight()
 
 void Hero::moveDownRight()
 
-{
+{sendHP(HP);
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
    int control = currentMapArray[x+1][y+1];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -180,6 +255,13 @@ void Hero::moveDownRight()
        x=x+1;
        y=y+1;
        break;
+
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x+1,y+1);
+       break;
    default:
        currentMapArray[x+1][y+1]=99;
        currentMapArray[x][y]=0;
@@ -191,7 +273,13 @@ void Hero::moveDownRight()
 
 void Hero::moveUpLeft()
 
-{
+{sendHP(HP);
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
    int control = currentMapArray[x-1][y-1];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -205,6 +293,13 @@ void Hero::moveUpLeft()
        x=x-1;
        y=y-1;
        break;
+
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x-1,y-1);
+       break;
    default:
        currentMapArray[x-1][y-1]=99;
        currentMapArray[x][y]=0;
@@ -215,7 +310,13 @@ void Hero::moveUpLeft()
 }
 
 void Hero::moveDownLeft()
-{
+{sendHP(HP);
+    int attackForce;
+    if (luck>rand()%12) {
+    attackForce = round((strength + agility)/2);
+    qDebug()<<"It's a marvellous hit!";}
+    else {
+        attackForce = round((strength)/3);}
    int control = currentMapArray[x-1][y+1];
    switch (control) {
    case 1: //It's a wall, can't move
@@ -228,6 +329,13 @@ void Hero::moveDownLeft()
        currentMapArray[x][y]=0;
        x=x-1;
        y=y+1;
+       break;
+
+   case 40: //It's an enemy
+
+       qDebug()<<"It's an enemy!";
+       qDebug()<<"I hit him with my sword for " << attackForce << " HP";
+       attack(attackForce,x-1,y+1);
        break;
    default:
        currentMapArray[x-1][y+1]=99;
@@ -250,7 +358,11 @@ void Hero::takePickUp(int pickup) {
 
 void Hero::attacked(int attackforce)
 {
+
+    if (attackforce>round (endurance/3)) {
+    HP=HP-attackforce;
     qDebug()<<"I was hit!";
+
     attackforce=attackforce-2;
     HP=HP-(attackforce+8/endurance);
       qDebug()<<"I lose "<<attackforce+8/endurance<<"hp! i have "<<HP<<"hp"<<endl;
@@ -266,9 +378,26 @@ void Hero::attacked(int attackforce)
            currentMapArray[x+1][y]=1;
            currentMapArray[x-1][y]=1;
 
+    sendHP(HP);
+    }
+    else  qDebug()<<"Enemy was missed!";
+}
+
       }}
 
 int Hero::getHealingPotions()
 {
     return healingPotions;
+}
+
+
+int Hero::drinkPotions()
+{  
+    if (healingPotions==!0)
+    {
+        healingPotions--;
+        HP=HP+5;
+        qDebug()<<"I drink potion!";
+    }
+return healingPotions;
 }
