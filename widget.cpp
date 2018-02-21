@@ -60,7 +60,7 @@ Widget::Widget(QWidget *parent) :
 
 
     connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
-
+    connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
     connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
     connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
 
@@ -70,7 +70,7 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
     connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
-    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+  //  connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
     connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
 
 
@@ -214,8 +214,8 @@ void Widget::takePickUp(int pickup) {
 
         break;
 
- //   default:
-  //      break;
+  //default:
+  //     break;
     }
 }
 
@@ -225,3 +225,10 @@ void Widget::updateHP(int HP)
     nums.setNum(HP);
     ui->label_4->setText(nums);
 }
+
+
+void Widget::attack_text()
+{
+    ui->textBrowser->append("<font color = red>Враг атаковал вас</font color>");
+}
+

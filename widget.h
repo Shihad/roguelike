@@ -25,6 +25,7 @@ public:
 public slots:
     void takePickUp(int pickup);
     void updateHP(int HP);
+    void attack_text();
 
 private:
     Ui::Widget *ui;
