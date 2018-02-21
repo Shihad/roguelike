@@ -20,14 +20,16 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget *parent = 0);
+    explicit Widget(QWidget *parent = 0);    Ui::Widget *ui;
+
     ~Widget();
 public slots:
     void takePickUp(int pickup);
+    void addtext(QString);
+
 
 private:
-    Ui::Widget *ui;
-    Hero *hero;
+   Hero *hero;
     GUInterface *gui;
     QGraphicsScene *scene;
     QTimer *timer;

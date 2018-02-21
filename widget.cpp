@@ -2,6 +2,8 @@
 #include "ui_widget.h"
 #include <QDebug>
 #include "hero.h"
+#include <string>
+
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -51,7 +53,10 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
-    connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
+
+    connect(hero,SIGNAL(sendText(QString)),this,SLOT(addtext(QString)));
+
+    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int))); //подбираем пикапы
     connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
     connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
 
@@ -79,10 +84,10 @@ Widget::~Widget()
     delete ui;
 }
 //обработка нажатий клавиш
-void Widget::keyPressEvent(QKeyEvent *event) {
+void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
     int key = event->key();
-    if (key==Qt::Key_W){
-        this->hero->moveUp();
+    if (key==Qt::Key_W)
+    {this->hero->moveUp();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
                 {
@@ -90,7 +95,8 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_S){
+    if (key==Qt::Key_S)
+{ui->textBrowser->append("top*");
         this->hero->moveDown();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -99,7 +105,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_D){
+    if (key==Qt::Key_D){ui->textBrowser->append("top*");
         this->hero->moveRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -108,7 +114,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_A){
+    if (key==Qt::Key_A){ui->textBrowser->append("top*");
         this->hero->moveLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -117,7 +123,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_E){
+    if (key==Qt::Key_E){ui->textBrowser->append("top*");
         this->hero->moveUpRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -126,7 +132,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_C){
+    if (key==Qt::Key_C){ui->textBrowser->append("top*");
         this->hero->moveDownRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -135,7 +141,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_Q){
+    if (key==Qt::Key_Q){ui->textBrowser->append("top*");
         qDebug()<<"hello"<<endl;
         this->hero->moveUpLeft();
         for (int i=0;i<50;i++) {
@@ -145,7 +151,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {
                 }
         }
     }
-    if (key==Qt::Key_Z){
+    if (key==Qt::Key_Z){ui->textBrowser->append("top*");
         qDebug()<<"hello"<<endl;
         this->hero->moveDownLeft();
         for (int i=0;i<50;i++) {
@@ -158,6 +164,10 @@ void Widget::keyPressEvent(QKeyEvent *event) {
 }
 
 //>>>>>>> refs/remotes/origin/develop
+void Widget::addtext(QString text)
+{
+ui->textBrowser->append(text);
+}
 
 void Widget::updateMap() {
 

@@ -45,14 +45,24 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>1260</x>
+     <x>1250</x>
      <y>60</y>
      <width>54</width>
-     <height>17</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>0</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>80</y>
+     <width>256</width>
+     <height>351</height>
+    </rect>
    </property>
   </widget>
  </widget>
