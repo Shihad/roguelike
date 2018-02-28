@@ -18,6 +18,8 @@ Widget::Widget(QWidget *parent) :
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
     map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
+    saveFile = new QFile("Save_File.dat");
+
 
     for (int i=0;i<50;i++) {
             for (int j=0;j<50;j++)
@@ -232,3 +234,23 @@ void Widget::attack_text()
     ui->textBrowser->append("<font color = red>Враг атаковал вас</font color>");
 }
 
+
+void Widget::on_save_clicked()
+{
+char buf[60];
+    saveFile->open(QIODevice::Append);
+    for (int x = 0;x<50;x++)
+    {
+      for (int y = 0;y<50;y++)
+
+      {
+
+           buf[y] =(48+ gui->currentMapArray[x][y]);
+
+      }
+      saveFile->write(buf);
+      saveFile->write("\n");
+    }
+saveFile->close();
+ui->save->setEnabled(false);
+}

@@ -9,6 +9,7 @@
 #include "enemy.h"
 #include <QKeyEvent>
 #include <QTimer>
+#include <QFile>
 
 
 namespace Ui {
@@ -34,8 +35,11 @@ private:
     QGraphicsScene *scene;
     QTimer *timer;
     Enemy *enemy;
+    QFile *saveFile;
 private slots:
     void updateMap();
+
+    void on_save_clicked();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
