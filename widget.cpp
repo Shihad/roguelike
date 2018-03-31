@@ -13,12 +13,16 @@ Widget::Widget(QWidget *parent) :
  //   CLInterface cli; //интерфейс командной строки
     RoguelikeMap map; //карта
     hero = new Hero; //герой
-    enemy = new Enemy();
+
+    enemy = new Enemy; //враг
+
     map.generateRandomMap(); //заполняем карту случайными числами
     map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
     map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
+    saveFile = new QFile("Save_File.dat");
+
 
     for (int i=0;i<50;i++) {
             for (int j=0;j<50;j++)
@@ -43,7 +47,13 @@ Widget::Widget(QWidget *parent) :
     gui = new GUInterface(); //создали графический объект
 //отрисовка сцены
     connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
+
+
+    connect(hero,SIGNAL(sendHP(int)),this,SLOT(updateHP(int)));
+
+
     //движение
+
     connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
     connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
     connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
@@ -53,12 +63,28 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
-
     connect(hero,SIGNAL(sendText(QString)),this,SLOT(addtext(QString)));
 
     connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int))); //подбираем пикапы
     connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+
+    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
+    connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
+    connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
+    connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+
+    connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
+  //  connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+
     connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
+
+
+
 
 
 
@@ -86,8 +112,18 @@ Widget::~Widget()
 //обработка нажатий клавиш
 void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
     int key = event->key();
-    if (key==Qt::Key_W)
-    {this->hero->moveUp();
+
+    if (key==Qt::Key_P)
+    {
+        int num = hero->drinkPotions();
+        QString nums;
+            nums.setNum(num);
+            ui->label_2->setText(nums);
+
+    }
+    if (key==Qt::Key_W){
+        this->hero->moveUp();
+
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
                 {
@@ -197,8 +233,8 @@ void Widget::takePickUp(int pickup) {
 
         break;
 
- //   default:
-  //      break;
+  //default:
+  //     break;
     }
 }
 /*
@@ -206,3 +242,37 @@ void Widget::on_pushButton_clicked()
 {
 
 }*/
+
+void Widget::updateHP(int HP)
+{
+    QString nums;
+    nums.setNum(HP);
+    ui->label_4->setText(nums);
+}
+
+
+void Widget::attack_text()
+{
+    ui->textBrowser->append("<font color = red>Враг атаковал вас</font color>");
+}
+
+
+void Widget::on_save_clicked()
+{
+char buf[60];
+    saveFile->open(QIODevice::Append);
+    for (int x = 0;x<50;x++)
+    {
+      for (int y = 0;y<50;y++)
+
+      {
+
+           buf[y] =(48+ gui->currentMapArray[x][y]);
+
+      }
+      saveFile->write(buf);
+      saveFile->write("\n");
+    }
+saveFile->close();
+ui->save->setEnabled(false);
+}
