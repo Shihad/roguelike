@@ -18,6 +18,7 @@ public:
 
 
 signals:
+
     void moveUp();
     void moveDown();
     void moveLeft();

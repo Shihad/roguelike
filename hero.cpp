@@ -60,6 +60,7 @@ void Hero::moveUp() {
         qDebug()<<"It's an enemy!";
         qDebug()<<"I hit him with my sword for " << attackForce << " HP";
         attack(attackForce,x,y-1);
+        attacked(attackForce);
         break;
 
     default: //There isn't any obstacles, move
@@ -69,6 +70,7 @@ void Hero::moveUp() {
         y=y-1;
         break;
     }
+
 }
 
 void Hero::moveDown() {
@@ -360,12 +362,31 @@ void Hero::attacked(int attackforce)
     if (attackforce>round (endurance/3)) {
     HP=HP-attackforce;
     qDebug()<<"I was hit!";
+
+    attackforce=attackforce-2;
+    HP=HP-(attackforce+8/endurance);
+      qDebug()<<"I lose "<<attackforce+8/endurance<<"hp! i have "<<HP<<"hp"<<endl;
+      if(HP<=0){qDebug()<<"u have 0 HP"; currentMapArray[x][y]=11;
+           currentMapArray[x+1][y+1]=1;
+           currentMapArray[x+1][y-1]=1;
+           currentMapArray[x-1][y+1]=1;
+           currentMapArray[x-1][y+1]=1;
+           currentMapArray[x+1][y+1]=1;
+           currentMapArray[x-1][y-1]=1;
+           currentMapArray[x][y+1]=1;
+           currentMapArray[x][y-1]=1;
+           currentMapArray[x+1][y]=1;
+           currentMapArray[x-1][y]=1;
+
     sendHP(HP);
     }
     else  qDebug()<<"Enemy was missed!";
 }
 
-int Hero::getHealingPotions() {
+      }}
+
+int Hero::getHealingPotions()
+{
     return healingPotions;
 }
 
