@@ -45,10 +45,11 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>1260</x>
-     <y>46</y>
+     <x>1250</x>
+     <y>60</y>
      <width>54</width>
-     <height>31</height>
+     <height>20</height>
+
     </rect>
    </property>
    <property name="text">
@@ -62,6 +63,7 @@
      <y>80</y>
      <width>101</width>
      <height>17</height>
+
     </rect>
    </property>
    <property name="text">
@@ -84,13 +86,14 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>1140</x>
-     <y>110</y>
+     <x>1050</x>
+     <y>80</y>
      <width>256</width>
-     <height>391</height>
+     <height>351</height>
     </rect>
    </property>
   </widget>
+
   <widget class="QPushButton" name="save">
    <property name="geometry">
     <rect>

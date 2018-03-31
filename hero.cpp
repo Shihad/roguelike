@@ -1,6 +1,8 @@
 #include "hero.h"
 #include <QDebug>
 #include "roguelikemap.h"
+#include "ui_widget.h"
+#include "widget.h"
 
 Hero::Hero(QObject *parent) : QObject(parent)
 {maxHP=endurance*5;
@@ -46,6 +48,8 @@ void Hero::moveUp() {
     switch (control) {
     case 1: //It's a wall, can't move
         qDebug()<<"I can't move";
+
+        sendText("I can't move");
         break;
     case 20: //It's a pickup
         getPickUp(control);
@@ -87,6 +91,8 @@ void Hero::moveDown() {
     switch (control) {
     case 1: //It's a wall, can't move
         qDebug()<<"I can't move";
+
+        sendText("I can't move");
         break;
     case 20: //It's a pickup
         getPickUp(control);
@@ -109,6 +115,7 @@ void Hero::moveDown() {
         x=x;
         y=y+1;
         break;
+
     }
 }
 
@@ -124,9 +131,10 @@ void Hero::moveRight()
     else {
         attackForce = round((strength)/3);}
    int control = currentMapArray[x+1][y];
-   switch (control) {
+   switch (control) {;
    case 1: //It's a wall, can't move
        qDebug()<<"I can't move";
+       sendText("I can't move");
        break;
    case 20: //It's a pickup
        getPickUp(control);
@@ -320,11 +328,13 @@ void Hero::moveDownLeft()
    int control = currentMapArray[x-1][y+1];
    switch (control) {
    case 1: //It's a wall, can't move
+         sendText("I can`t move");
        qDebug()<<"I can't move";
        break;
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
+     sendText("It's a bottle of healing potion!");
        currentMapArray[x-1][y+1]=99;
        currentMapArray[x][y]=0;
        x=x-1;
@@ -347,6 +357,7 @@ void Hero::moveDownLeft()
 }
 
 void Hero::takePickUp(int pickup) {
+
     switch (pickup) {
     case 20:
         healingPotions++;
@@ -355,17 +366,20 @@ void Hero::takePickUp(int pickup) {
         break;
     }
 }
-
 void Hero::attacked(int attackforce)
+
+{sendText("I was hit!");
+
 {
 
     if (attackforce>round (endurance/3)) {
     HP=HP-attackforce;
+
     qDebug()<<"I was hit!";
 
     attackforce=attackforce-2;
     HP=HP-(attackforce+8/endurance);
-      qDebug()<<"I lose "<<attackforce+8/endurance<<"hp! i have "<<HP<<"hp"<<endl;
+     qDebug()<<"I lose "<<attackforce+8/endurance<<"hp! i have "<<HP<<"hp"<<endl;
       if(HP<=0){qDebug()<<"u have 0 HP"; currentMapArray[x][y]=11;
            currentMapArray[x+1][y+1]=1;
            currentMapArray[x+1][y-1]=1;

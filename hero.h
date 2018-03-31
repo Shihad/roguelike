@@ -2,7 +2,7 @@
 #define HERO_H
 #include <QObject>
 #include <QKeyEvent>
-
+#include <QString>
 
 class Hero : public QObject
 {
@@ -16,6 +16,7 @@ public:
 
 
 public slots:
+
     void moveUp();
     void moveDown();
     void moveLeft();
@@ -33,7 +34,10 @@ public slots:
 signals:
     void getPickUp(int pickup);    
 
-    void attack(int attackforce,int x, int y);
+    void attack(int attackforce, int x, int y);
+    void sendText(QString);
+
+
     void sendHP(int HealPoints);
 
 
