@@ -22,6 +22,7 @@ signals:
 public slots:
     void attacked(int attackforce, int x, int y);
 
+
 private:
     int x,y;
     int strength=5;
@@ -30,7 +31,7 @@ private:
     int charisma=5;
     int intellect=5;
     int agility=5;
-    int luck=2;
+    int luck=10;
     int healingPotions =0;
 
     int maxHP=12;

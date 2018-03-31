@@ -393,7 +393,7 @@ int Hero::getHealingPotions()
 
 int Hero::drinkPotions()
 {  
-    if (healingPotions==!0)
+    if (healingPotions>0)
     {
         healingPotions--;
         HP=HP+5;

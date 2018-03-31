@@ -19,6 +19,8 @@ Widget::Widget(QWidget *parent) :
     map.placePickUpInRandomPlace();//размещаем пикапы на карте
     map.placeEnemyInRandomPlace(); //размещаем на карте врагов
     map.returnMap(); //обновляем публичную карту currentMapArray
+    saveFile = new QFile("Save_File.dat");
+
 
     for (int i=0;i<50;i++) {
             for (int j=0;j<50;j++)
@@ -61,7 +63,7 @@ Widget::Widget(QWidget *parent) :
 
 
     connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
-
+    connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
     connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
     connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
 
@@ -71,7 +73,7 @@ Widget::Widget(QWidget *parent) :
     connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 
     connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
-    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+  //  connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
     connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
 
 
@@ -217,8 +219,8 @@ void Widget::takePickUp(int pickup) {
 
         break;
 
- //   default:
-  //      break;
+  //default:
+  //     break;
     }
 }
 /*
@@ -232,4 +234,31 @@ void Widget::updateHP(int HP)
     QString nums;
     nums.setNum(HP);
     ui->label_4->setText(nums);
+}
+
+
+void Widget::attack_text()
+{
+    ui->textBrowser->append("<font color = red>Враг атаковал вас</font color>");
+}
+
+
+void Widget::on_save_clicked()
+{
+char buf[60];
+    saveFile->open(QIODevice::Append);
+    for (int x = 0;x<50;x++)
+    {
+      for (int y = 0;y<50;y++)
+
+      {
+
+           buf[y] =(48+ gui->currentMapArray[x][y]);
+
+      }
+      saveFile->write(buf);
+      saveFile->write("\n");
+    }
+saveFile->close();
+ui->save->setEnabled(false);
 }
