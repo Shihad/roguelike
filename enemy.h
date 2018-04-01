@@ -10,6 +10,7 @@ class Enemy : public QObject
     Q_OBJECT
 public:
     explicit Enemy(QObject *parent = 0);
+    void setXY(int newx, int newy);
 
 signals:
     void attack(int attackforce);
@@ -19,8 +20,9 @@ signals:
     void enemydied(int x, int y);
 
 
+
 public slots:
-    void attacked(int attackforce, int x, int y);
+    void attacked(int attackforce, int enemyx, int enemyy);
 
 
 private:

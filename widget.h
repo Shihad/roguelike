@@ -40,6 +40,7 @@ private:
     QTimer *timer;
     Enemy *enemy;
     QFile *saveFile;
+    RoguelikeMap *map;
     void makeAllConnected();
 private slots:
     void updateMap();

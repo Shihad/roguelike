@@ -2,11 +2,17 @@
 
 Enemy::Enemy(QObject *parent) : QObject(parent)
 {
-HP=maxHP;
+    HP=maxHP;
 }
 
-void Enemy::attacked(int attackforce, int x, int y)
+void Enemy::setXY(int newx, int newy)
+{
+    x= newx;
+    y = newy;
+}
 
+void Enemy::attacked(int attackforce, int enemyx, int enemyy)
+{ if ((enemyx==x) and (enemyy=y))
 {
 qDebug()<<"Enemy was attacked";
 HP=HP-attackforce+  (endurance/3);
@@ -32,8 +38,8 @@ qDebug()<<"enemy has "<<HP <<" HP left";
 
 if (HP<0) {
     enemydied(x,y);
-    HP=maxHP;}
+   }
 
-}
+}}
 
 

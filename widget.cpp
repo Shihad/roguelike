@@ -11,23 +11,23 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
  //   CLInterface cli; //интерфейс командной строки
-    RoguelikeMap map; //карта
+    map = new RoguelikeMap ; //карта
     hero = new Hero; //герой
 
     enemy = new Enemy; //враг
 
-    map.generateRandomMap(); //заполняем карту случайными числами
-    map.placeHeroInRandomPlace(); //размещаем героя в случайном месте
-    map.placePickUpInRandomPlace();//размещаем пикапы на карте
-    map.placeEnemyInRandomPlace(); //размещаем на карте врагов
-    map.returnMap(); //обновляем публичную карту currentMapArray
+    map->generateRandomMap(); //заполняем карту случайными числами
+    map->placeHeroInRandomPlace(); //размещаем героя в случайном месте
+    map->placePickUpInRandomPlace();//размещаем пикапы на карте
+    map->placeEnemyInRandomPlace(); //размещаем на карте врагов
+    map->returnMap(); //обновляем публичную карту currentMapArray
     saveFile = new QFile("Save_File.dat");
 
 
     for (int i=0;i<50;i++) {
             for (int j=0;j<50;j++)
             {
-                hero->currentMapArray[i][j]=map.currentMapArray[i][j];
+                hero->currentMapArray[i][j]=map->currentMapArray[i][j];
             }} //заполняем массив публичной карты героя публичной картой
 
     hero->findHero(); //обновляем x,y героя
@@ -249,11 +249,15 @@ void Widget::makeAllConnected()
     connect(hero,SIGNAL(sendText(QString)),this,SLOT(addtext(QString)));   //сообщения
 
     connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int))); //подбираем пикапы
-    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+    foreach (enemy, map->enemies) {
+         connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+         connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
+         connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
+    }
+
 
    // connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
-    connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
-    connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
+
 
     connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
     connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));

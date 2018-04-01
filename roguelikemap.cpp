@@ -66,6 +66,9 @@ void RoguelikeMap::placeEnemyInRandomPlace() {
                  int a = rand()%25; //
                  if ((a==1) and(mapArray[i][j]!=1)) {
                      mapArray[i][j]=40;
+                     enemy = new Enemy();
+                     enemy->setXY(i,j);
+                     enemies.append(enemy);
 
 
                  }

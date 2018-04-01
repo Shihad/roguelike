@@ -1,6 +1,7 @@
 #ifndef ROGUELIKEMAP_H
 #define ROGUELIKEMAP_H
 #include <QObject>
+#include "enemy.h"
 
 
 
@@ -18,6 +19,9 @@ public:
 
 
     void placeEnemyInRandomPlace();
+    Enemy *enemy;
+    QList <Enemy*> enemies;
+
 signals:
 
 public slots:

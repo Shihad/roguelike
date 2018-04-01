@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QKeyEvent>
 #include <QString>
+#include "enemy.h"
 
 class Hero : public QObject
 {
