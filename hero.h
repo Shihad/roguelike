@@ -13,6 +13,8 @@ public:
     int currentMapArray[50][50];
     int getHealingPotions();
     int drinkPotions();
+    int setHeroAttackForce();
+    void foundEnemyAndAttackHim();
 
 
 public slots:
@@ -27,26 +29,22 @@ public slots:
     void moveDownRight();
     void moveUpLeft();
     void moveDownLeft();
+
   //  void setPos(int x, int y);
     void findHero();
-
-
-signals:
-    void getPickUp(int pickup);    
-
-    void attack(int attackforce, int x, int y);
-    void sendText(QString);
-
-
-    void sendHP(int HealPoints);
-
-
-
-
-public slots:
     void takePickUp (int pickup);
     void attacked(int attackforce);
     void killEnemyInXY(int x, int y);
+
+
+
+signals:
+    void getPickUp(int pickup);
+    void attack(int attackforce, int x, int y);
+    void sendText(QString);
+    void sendHP(int HealPoints);
+
+
 
 
 private:

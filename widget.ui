@@ -21,8 +21,8 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>341</width>
-     <height>251</height>
+     <width>701</width>
+     <height>611</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -49,7 +49,6 @@
      <y>60</y>
      <width>54</width>
      <height>20</height>
-
     </rect>
    </property>
    <property name="text">
@@ -63,7 +62,6 @@
      <y>80</y>
      <width>101</width>
      <height>17</height>
-
     </rect>
    </property>
    <property name="text">
@@ -86,14 +84,13 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>1050</x>
-     <y>80</y>
+     <x>1010</x>
+     <y>140</y>
      <width>256</width>
      <height>351</height>
     </rect>
    </property>
   </widget>
-
   <widget class="QPushButton" name="save">
    <property name="geometry">
     <rect>

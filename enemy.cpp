@@ -9,7 +9,7 @@ void Enemy::attacked(int attackforce, int x, int y)
 
 {
 qDebug()<<"Enemy was attacked";
-HP=HP-attackforce+ round (endurance/3);
+HP=HP-attackforce+  (endurance/3);
 qDebug()<<"Enemy has " << HP << " left";
 if (HP<=0) {
     enemyWasKilled(x,y);
@@ -18,16 +18,16 @@ if (HP<=0) {
 
 int attackF;
 if (luck>rand()%18) {
-attackF = round((strength + agility)/2);
+attackF = ((strength + agility)/2);
 qDebug()<<"It's a critical hit! I was heavy wounded!";}
 else {
-    attackF = round((strength)/3);}
+    attackF = ((strength)/3);}
 attack(attackF);
 
 
 
     qDebug()<<"Enemy was attacked";
-HP=HP-attackforce + round (endurance/3);
+HP=HP-attackforce + (endurance/3);
 qDebug()<<"enemy has "<<HP <<" HP left";
 
 if (HP<0) {

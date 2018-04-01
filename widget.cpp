@@ -45,43 +45,13 @@ Widget::Widget(QWidget *parent) :
 
     ui->graphicsView->setFocus(); //создали сцену
     gui = new GUInterface(); //создали графический объект
-//отрисовка сцены
-    connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
+
+    makeAllConnected();
 
 
-    connect(hero,SIGNAL(sendHP(int)),this,SLOT(updateHP(int)));
+   // connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
 
-
-    //движение
-
-    connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
-    connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
-    connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
-    connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
-    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
-    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
-    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
-    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
-
-    connect(hero,SIGNAL(sendText(QString)),this,SLOT(addtext(QString)));
-
-    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int))); //подбираем пикапы
-    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
-
-    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int)));
-    connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
-    connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
-    connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
-
-    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
-    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
-    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
-    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
-
-    connect(hero,SIGNAL(getPickUp(int,int,int)),this,SLOT(takePickUp(int,int,int))); //подбираем пикапы
-  //  connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
-
-    connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
+ //   connect(enemy,SIGNAL(enemydied(int,int)),hero,SLOT(killEnemyInXY(int,int)));//убийство врага
 
 
 
@@ -110,7 +80,7 @@ Widget::~Widget()
     delete ui;
 }
 //обработка нажатий клавиш
-void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
+void Widget::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
 
     if (key==Qt::Key_P)
@@ -119,6 +89,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
         QString nums;
             nums.setNum(num);
             ui->label_2->setText(nums);
+            ui->textBrowser->append("I drink a healing potion. Taste like chicken");
 
     }
     if (key==Qt::Key_W){
@@ -132,7 +103,8 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
         }
     }
     if (key==Qt::Key_S)
-{ui->textBrowser->append("top*");
+{
+
         this->hero->moveDown();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -140,8 +112,9 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                     gui->currentMapArray[i][j]=hero->currentMapArray[i][j];
                 }
         }
+
     }
-    if (key==Qt::Key_D){ui->textBrowser->append("top*");
+    if (key==Qt::Key_D){
         this->hero->moveRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -150,7 +123,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                 }
         }
     }
-    if (key==Qt::Key_A){ui->textBrowser->append("top*");
+    if (key==Qt::Key_A){
         this->hero->moveLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -159,7 +132,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                 }
         }
     }
-    if (key==Qt::Key_E){ui->textBrowser->append("top*");
+    if (key==Qt::Key_E){
         this->hero->moveUpRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -168,7 +141,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                 }
         }
     }
-    if (key==Qt::Key_C){ui->textBrowser->append("top*");
+    if (key==Qt::Key_C){       
         this->hero->moveDownRight();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -177,8 +150,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                 }
         }
     }
-    if (key==Qt::Key_Q){ui->textBrowser->append("top*");
-        qDebug()<<"hello"<<endl;
+    if (key==Qt::Key_Q){
         this->hero->moveUpLeft();
         for (int i=0;i<50;i++) {
                 for (int j=0;j<50;j++)
@@ -187,7 +159,7 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
                 }
         }
     }
-    if (key==Qt::Key_Z){ui->textBrowser->append("top*");
+    if (key==Qt::Key_Z){
         qDebug()<<"hello"<<endl;
         this->hero->moveDownLeft();
         for (int i=0;i<50;i++) {
@@ -199,7 +171,6 @@ void Widget::keyPressEvent(QKeyEvent *event) {ui->textBrowser->append("top*");
     }
 }
 
-//>>>>>>> refs/remotes/origin/develop
 void Widget::addtext(QString text)
 {
 ui->textBrowser->append(text);
@@ -253,7 +224,41 @@ void Widget::updateHP(int HP)
 
 void Widget::attack_text()
 {
-    ui->textBrowser->append("<font color = red>Враг атаковал вас</font color>");
+    ui->textBrowser->append("<font color = red>Враг атаковал вас!</font color>");
+}
+
+void Widget::makeAllConnected()
+{
+    //отрисовка сцены
+
+    connect(timer,SIGNAL(timeout()),scene,SLOT(update()));
+    connect(hero,SIGNAL(sendHP(int)),this,SLOT(updateHP(int)));
+
+    //движение
+
+    connect(gui,SIGNAL(moveRight()),hero,SLOT(moveRight()));
+    connect(gui,SIGNAL(moveLeft()),hero,SLOT(moveLeft()));
+    connect(gui,SIGNAL(moveUp()),hero,SLOT(moveUp()));
+    connect(gui,SIGNAL(moveDown()),hero,SLOT(moveDown()));
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
+
+
+    connect(hero,SIGNAL(sendText(QString)),this,SLOT(addtext(QString)));   //сообщения
+
+    connect(hero,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int))); //подбираем пикапы
+    connect(hero,SIGNAL(attack(int,int,int)),enemy,SLOT(attacked(int,int,int))); //атака на врага
+
+   // connect(enemy,SIGNAL(attack(int)),this,SLOT(attack_text()));
+    connect(enemy,SIGNAL(attack(int)),hero,SLOT(attacked(int)));
+    connect(enemy,SIGNAL(enemyWasKilled(int,int)),hero,SLOT(killEnemyInXY(int,int)));
+
+    connect(gui,SIGNAL(moveUpRight()),hero,SLOT(moveUpRight()));
+    connect(gui,SIGNAL(moveUpLeft()),hero,SLOT(moveUpLeft()));
+    connect(gui,SIGNAL(moveDownLeft()),hero,SLOT(moveDownLeft()));
+    connect(gui,SIGNAL(moveDownRight()),hero,SLOT(moveDownRight()));
 }
 
 
