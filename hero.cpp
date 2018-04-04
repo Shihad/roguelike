@@ -56,8 +56,7 @@ void Hero::moveUp() {
         y=y-1;
         break;
     case 40: //It's an enemy
-        foundEnemyAndAttackHim();
-
+        foundEnemyAndAttackHim(x,y-1);
         break;
 
     default: //There isn't any obstacles, move
@@ -91,7 +90,7 @@ void Hero::moveDown() {
         break;
 
     case 40: //It's an enemy
-        foundEnemyAndAttackHim();
+        foundEnemyAndAttackHim(x,y+1);
 
         break;
     default:
@@ -125,7 +124,7 @@ void Hero::moveRight()
        break;
 
    case 40: //It's an enemy
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x+1,y);
 
        break;
    default:
@@ -158,7 +157,7 @@ void Hero::moveLeft()
        break;
 
    case 40: //It's an enemy
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x-1,y);
 
        break;
    default:
@@ -190,7 +189,7 @@ void Hero::moveUpRight()
        break;
 
    case 40: //It's an enemy
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x+1,y-1);
 
        break;
 
@@ -222,7 +221,7 @@ void Hero::moveDownRight()
        break;
 
    case 40: //It's an enemy
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x+1,y+1);
        break;
 
    default:
@@ -255,7 +254,7 @@ void Hero::moveUpLeft()
 
    case 40: //It's an enemy
 
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x-1,y-1);
 
        break;
    default:
@@ -290,7 +289,7 @@ void Hero::moveDownLeft()
 
    case 40: //It's an enemy
 
-       foundEnemyAndAttackHim();
+       foundEnemyAndAttackHim(x-1,y+1);
 
        break;
    default:
@@ -381,7 +380,7 @@ int Hero::setHeroAttackForce()
 
 }
 
-void Hero::foundEnemyAndAttackHim()
+void Hero::foundEnemyAndAttackHim(int enemyx, int enemyy)
 {   int attackForce;
     QString str;
     // qDebug()<<"It's an enemy!";
@@ -392,5 +391,5 @@ void Hero::foundEnemyAndAttackHim()
      str.prepend("I hit him with my sword for ");
      str.append(" HP");
      sendText(str);
-     attack(attackForce,x,y-1);
+     attack(attackForce,enemyx,enemyy);
 }

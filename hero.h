@@ -15,7 +15,7 @@ public:
     int getHealingPotions();
     int drinkPotions();
     int setHeroAttackForce();
-    void foundEnemyAndAttackHim();
+    void foundEnemyAndAttackHim(int enemyx,int enemyy);
 
 
 public slots:

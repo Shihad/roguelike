@@ -38,6 +38,7 @@ qDebug()<<"enemy has "<<HP <<" HP left";
 
 if (HP<0) {
     enemydied(x,y);
+    delete(this);
    }
 
 }}
