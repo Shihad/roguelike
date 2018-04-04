@@ -1,4 +1,4 @@
-
+#include <hero.h>
 #include <QObject>
 #include <QGraphicsItem>
 #include <QPixmap>

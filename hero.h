@@ -36,7 +36,7 @@ public slots:
     void takePickUp (int pickup);
     void attacked(int attackforce);
     void killEnemyInXY(int x, int y);
-
+    void lvlUp();
 
 
 signals:
@@ -49,6 +49,9 @@ signals:
 
 
 private:
+    int maxHP=50;
+
+    int lvl=0;
     int exp=0;
     int lvlexp=10;
     int x,y,alive;
@@ -61,7 +64,6 @@ private:
 
     int luck=8;
     int healingPotions =0;
-    int maxHP;
    int HP=5*strength;
 };
 

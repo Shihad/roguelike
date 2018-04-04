@@ -47,6 +47,8 @@ private slots:
 
     void on_save_clicked();
 
+    void on_pushButton_clicked();
+
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
 };

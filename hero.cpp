@@ -3,10 +3,9 @@
 #include "roguelikemap.h"
 #include "ui_widget.h"
 #include "widget.h"
-
+int lvlar=0;
 Hero::Hero(QObject *parent) : QObject(parent)
-{maxHP=endurance*5;
-    HP=maxHP;
+{
     qDebug()<<"HitPoints -" <<HP<<" of "<< maxHP;
 
 connect(this,SIGNAL(getPickUp(int)),this,SLOT(takePickUp(int)));
@@ -18,7 +17,7 @@ void Hero::findHero() {
             for (int j=1;j<49;j++)
             {
 
-                 if (currentMapArray[i][j]==99) {
+                 if (currentMapArray[i][j]==99-lvlar) {
                      x=i;
                      qDebug()<<x;
                      y=j;
@@ -28,11 +27,77 @@ void Hero::findHero() {
             }
 }}
 
+void Hero::lvlUp()
+{
+if (exp>=lvlexp){lvl=lvl+1; exp=0;  lvlexp=lvlexp+0;    HP=HP+5*lvl;
+if (lvl==1){strength=strength+1;};
+ if (lvl==2){perception=perception+1;};
+  if (lvl==3){endurance=endurance+1;currentMapArray[x][y]=98;lvlar=1;};
+   if (lvl==4){charisma=charisma+1;};
+   if (lvl==5){intellect=intellect+1;};
+    if (lvl==6){agility=agility+1;};
+     if (lvl==7){luck=luck+1;lvlexp=lvlexp+10;};
+     if (lvl==8){strength=strength+1;perception=perception+1;endurance=endurance+1;charisma=charisma+1;intellect=intellect+1;agility=agility+1;luck=luck+1;lvlexp+1000;};
+qDebug()<<"strength="<<strength;
+qDebug()<<"perception="<<perception;  if(HP>=maxHP){HP=maxHP;};
+qDebug()<<"endurance="<<endurance;
+qDebug()<<"charisma="<<charisma;
 
+qDebug()<<"intellect="<<intellect;
+qDebug()<<"agility="<<agility;
+maxHP=10*endurance;
+QString sttr;
+sendText(sttr);
+
+sttr.setNum(lvl);
+sttr.prepend("lvl=");
+sendText(sttr);
+
+sttr.setNum(maxHP);
+sttr.prepend("maxHP=");
+sendText(sttr);
+
+  sttr.setNum(strength);
+sttr.prepend("strength=");
+
+  sendText(sttr);
+
+  sttr.setNum(perception);
+sttr.prepend("perception=");
+
+     sendText(sttr);
+
+  sttr.setNum(endurance);
+sttr.prepend("endurance=");
+
+
+
+         sendText(sttr);
+  sttr.setNum(charisma);
+sttr.prepend("charisma=");
+
+              sendText(sttr);
+  sttr.setNum(intellect);
+sttr.prepend("intellect=");
+
+                  sendText(sttr);
+                  sttr.setNum(agility);
+                sttr.prepend("agility=");
+
+                sendText(sttr);
+
+sttr.setNum(luck);
+sttr.prepend("luck=");
+
+sendText(sttr);};
+}
 void Hero::killEnemyInXY(int x, int y)
 {
     currentMapArray[x][y]=0;
+
     qDebug()<<"Enemy was killed";
+    exp=exp+5;
+      qDebug()<<"you get "<<exp<<"exp";lvlUp();
 }
 
 void Hero::moveUp() {
@@ -50,7 +115,7 @@ void Hero::moveUp() {
         getPickUp(control);
         qDebug()<<"It's a bottle of healing potion!";
         sendText("It's a bottle of healing potion!");
-        currentMapArray[x][y-1]=99;
+        currentMapArray[x][y-1]=99-lvlar;
         currentMapArray[x][y]=0;
         x=x;
         y=y-1;
@@ -60,7 +125,7 @@ void Hero::moveUp() {
         break;
 
     default: //There isn't any obstacles, move
-        currentMapArray[x][y-1]=99;
+        currentMapArray[x][y-1]=99-lvlar;
         currentMapArray[x][y]=0;
         x=x;
         y=y-1;
@@ -83,7 +148,7 @@ void Hero::moveDown() {
     case 20: //It's a pickup
         getPickUp(control);
         qDebug()<<"It's a bottle of healing potion!";
-        currentMapArray[x][y+1]=99;
+        currentMapArray[x][y+1]=99-lvlar;
         currentMapArray[x][y]=0;
         x=x;
         y=y+1;
@@ -94,7 +159,7 @@ void Hero::moveDown() {
 
         break;
     default:
-        currentMapArray[x][y+1]=99;
+        currentMapArray[x][y+1]=99-lvlar;
         currentMapArray[x][y]=0;
         x=x;
         y=y+1;        
@@ -117,7 +182,7 @@ void Hero::moveRight()
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
-       currentMapArray[x+1][y]=99;
+       currentMapArray[x+1][y]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y;
@@ -128,7 +193,7 @@ void Hero::moveRight()
 
        break;
    default:
-       currentMapArray[x+1][y]=99;
+       currentMapArray[x+1][y]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y;       
@@ -150,7 +215,7 @@ void Hero::moveLeft()
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
-       currentMapArray[x-1][y]=99;
+       currentMapArray[x-1][y]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y;
@@ -161,7 +226,7 @@ void Hero::moveLeft()
 
        break;
    default:
-       currentMapArray[x-1][y]=99;
+       currentMapArray[x-1][y]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y;       
@@ -182,7 +247,7 @@ void Hero::moveUpRight()
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
-       currentMapArray[x+1][y-1]=99;
+       currentMapArray[x+1][y-1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y-1;
@@ -194,7 +259,7 @@ void Hero::moveUpRight()
        break;
 
    default:
-       currentMapArray[x+1][y-1]=99;
+       currentMapArray[x+1][y-1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y-1;
@@ -214,7 +279,7 @@ void Hero::moveDownRight()
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
-       currentMapArray[x+1][y+1]=99;
+       currentMapArray[x+1][y+1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y+1;
@@ -225,7 +290,7 @@ void Hero::moveDownRight()
        break;
 
    default:
-       currentMapArray[x+1][y+1]=99;
+       currentMapArray[x+1][y+1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x+1;
        y=y+1;
@@ -246,7 +311,7 @@ void Hero::moveUpLeft()
    case 20: //It's a pickup
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
-       currentMapArray[x-1][y-1]=99;
+       currentMapArray[x-1][y-1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y-1;
@@ -258,7 +323,7 @@ void Hero::moveUpLeft()
 
        break;
    default:
-       currentMapArray[x-1][y-1]=99;
+       currentMapArray[x-1][y-1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y-1;
@@ -280,7 +345,7 @@ void Hero::moveDownLeft()
        getPickUp(control);
        qDebug()<<"It's a bottle of healing potion!";
      sendText("It's a bottle of healing potion!");
-       currentMapArray[x-1][y+1]=99;
+       currentMapArray[x-1][y+1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y+1;       
@@ -293,7 +358,7 @@ void Hero::moveDownLeft()
 
        break;
    default:
-       currentMapArray[x-1][y+1]=99;
+       currentMapArray[x-1][y+1]=99-lvlar;
        currentMapArray[x][y]=0;
        x=x-1;
        y=y+1;
@@ -358,13 +423,15 @@ int Hero::getHealingPotions()
 
 
 int Hero::drinkPotions()
-{  
+{  if(HP==maxHP){HP=HP-5;};
     if (healingPotions>0)
     {
         healingPotions--;
         HP=HP+5;
+
         qDebug()<<"I drink potion!";
     }
+
     return healingPotions;
 }
 

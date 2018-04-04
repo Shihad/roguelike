@@ -44,6 +44,9 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
                     case 99: { //рисуем героя
                          painter->drawPixmap(16*i-400,16*j-400, *figPix, 0, 64, 16,16);
                          break;
+                    case 98:  //рисуем героя++
+                         painter->drawPixmap(16*i-400,16*j-400, *figPix, 16, 64, 16,16);
+                         break;
                     case 11: {//risuem trup geroya
                              painter->drawPixmap(16*i-400,16*j-400, *figPix, 96,112,16,16);
                              break;}

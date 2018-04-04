@@ -285,3 +285,8 @@ char buf[60];
 saveFile->close();
 ui->save->setEnabled(false);
 }
+
+void Widget::on_pushButton_clicked()
+{
+
+}
