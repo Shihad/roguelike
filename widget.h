@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QTimer>
 #include <QFile>
+#include "hero_dialog.h"
 
 
 namespace Ui {
@@ -22,7 +23,7 @@ class Widget : public QWidget
 
 public:
     explicit Widget(QWidget *parent = 0);    Ui::Widget *ui;
-
+    Hero_Dialog *hdialog;
     ~Widget();
 public slots:
     void takePickUp(int pickup);
@@ -34,18 +35,21 @@ public slots:
 
 
 private:
-   Hero *hero;
+    Hero *hero;
     GUInterface *gui;
     QGraphicsScene *scene;
     QTimer *timer;
     Enemy *enemy;
     QFile *saveFile;
     RoguelikeMap *map;
+
     void makeAllConnected();
 private slots:
     void updateMap();
 
     void on_save_clicked();
+
+    void on_hero_dialog_btn_clicked();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);

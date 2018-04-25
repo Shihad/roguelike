@@ -18,16 +18,19 @@ SOURCES += main.cpp\
     clinterface.cpp \
     guinterface.cpp \
     hero.cpp \
-    enemy.cpp
+    enemy.cpp \
+    hero_dialog.cpp
 
 HEADERS  += widget.h \
     roguelikemap.h \
     clinterface.h \
     guinterface.h \
     hero.h \
-    enemy.h
+    enemy.h \
+    hero_dialog.h
 
-FORMS    += widget.ui
+FORMS    += widget.ui \
+    hero_dialog.ui
 
 RESOURCES += \
     img.qrc

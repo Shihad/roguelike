@@ -10,7 +10,7 @@ GUInterface::GUInterface(QObject *parent) : QObject(parent), QGraphicsItem()
 
 QRectF GUInterface::boundingRect() const
 {
-    return QRectF(-400,-400,800,800);
+    return QRectF(-160,-160,320,320);
 }
 
 
@@ -23,34 +23,56 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
      * 4 и 5 аргументы - Координаты в В изображении QPixmap, откуда будет отображаться изображение
      * Задавая координаты, мы выбираем спрайт
      * и последние два аргумента - это ширина и высота  кадра
-     * */ for(int i = 0; i < 50; i++) {
-        for(int j = 0; j < 50; j++) {
+     *
+     * */
+    //ищем героя
+    int x,y;
+    for (int i=1;i<49;i++) {
+            for (int j=1;j<49;j++)
+            {
+
+                 if (currentMapArray[i][j]==99) {
+                     x=i;
+                     qDebug()<<x;
+                     y=j;
+                     qDebug()<<y;
+
+                 }
+            }
+            if (x<10) { x = 10;}
+            if (y<10) {y = 10;}
+            if (x>40) {x = 40;}
+            if (y>40) {y = 40;}
+
+
+    for(int i = x-10; i < x+10; i++) {
+        for(int j = y-10; j < y+10; j++) {
             int a = currentMapArray[i][j];
 
                     switch (a) {
                     case 1: //рисуем стены
-                    painter->drawPixmap(16*i-400,16*j-400, *figPix, 96, 16, 16,16);
+                    painter->drawPixmap(16*(i-x),16*(j-y), *figPix, 96, 16, 16,16);
                     break;
 
                     case 20:
                          //Рисуем пикапы
-                             painter->drawPixmap(16*i-400,16*j-400, *figPix,0, 144, 16,16);
+                             painter->drawPixmap(16*(i-x),16*(j-y), *figPix,0, 144, 16,16);
                          break;
                     case 40:
                         //Рисуем врагов
-                             painter->drawPixmap(16*i-400,16*j-400, *figPix,96, 96, 16,16);
+                             painter->drawPixmap(16*(i-x),16*(j-y), *figPix,96, 96, 16,16);
                          break;
 
                     case 99: { //рисуем героя
-                         painter->drawPixmap(16*i-400,16*j-400, *figPix, 0, 64, 16,16);
+                         painter->drawPixmap(16*(i-x),16*(j-y), *figPix, 0, 64, 16,16);
                          break;
                     case 11: {//risuem trup geroya
-                             painter->drawPixmap(16*i-400,16*j-400, *figPix, 96,112,16,16);
+                             painter->drawPixmap(16*(i-x),16*(j-y), *figPix, 96,112,16,16);
                              break;}
                     }
 
                     default:
-                   { painter->drawPixmap(16*i-400,16*j-400, *figPix, 16, 0, 16,16);
+                   { painter->drawPixmap(16*(i-x),16*(j-y), *figPix, 16, 0, 16,16);
 
                     break;}
         }
@@ -64,7 +86,7 @@ void GUInterface::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-}
+}}
 /*
 
 void GUInterface::showMap(int* arr, int m, int n)

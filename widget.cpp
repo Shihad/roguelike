@@ -10,6 +10,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    hdialog = new Hero_Dialog();
  //   CLInterface cli; //интерфейс командной строки
     map = new RoguelikeMap ; //карта
     hero = new Hero; //герой
@@ -35,9 +36,9 @@ Widget::Widget(QWidget *parent) :
 
    // cli.showMap(&map.currentMapArray[0][0],50,50);
 
-    this->resize(1900,900);
-    this->setFixedSize(1900,900);
-    ui->graphicsView->resize(850,850); //изменили размер окна
+   // this->resize(1900,900);
+   // this->setFixedSize(1900,900);
+    ui->graphicsView->resize(330,330); //изменили размер окна
     scene = new QGraphicsScene();
     ui->graphicsView->setScene(scene);
     timer = new QTimer();
@@ -284,4 +285,9 @@ char buf[60];
     }
 saveFile->close();
 ui->save->setEnabled(false);
+}
+
+void Widget::on_hero_dialog_btn_clicked()
+{
+    hdialog->show();
 }

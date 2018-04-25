@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1414</width>
-    <height>745</height>
+    <width>332</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="focusPolicy">
@@ -19,11 +19,17 @@
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>701</width>
-     <height>611</height>
+     <x>1</x>
+     <y>40</y>
+     <width>330</width>
+     <height>330</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="focusPolicy">
     <enum>Qt::ClickFocus</enum>
@@ -32,8 +38,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>40</y>
+     <x>30</x>
+     <y>10</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -45,8 +51,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>1250</x>
-     <y>60</y>
+     <x>140</x>
+     <y>20</y>
      <width>54</width>
      <height>20</height>
     </rect>
@@ -58,9 +64,9 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>80</y>
-     <width>101</width>
+     <x>210</x>
+     <y>20</y>
+     <width>41</width>
      <height>17</height>
     </rect>
    </property>
@@ -71,8 +77,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>1263</x>
-     <y>80</y>
+     <x>270</x>
+     <y>20</y>
      <width>41</width>
      <height>20</height>
     </rect>
@@ -84,24 +90,37 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>1010</x>
-     <y>140</y>
-     <width>256</width>
-     <height>351</height>
+     <x>1</x>
+     <y>370</y>
+     <width>330</width>
+     <height>100</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="save">
    <property name="geometry">
     <rect>
-     <x>1000</x>
-     <y>40</y>
+     <x>0</x>
+     <y>470</y>
      <width>84</width>
-     <height>33</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="hero_dialog_btn">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>470</y>
+     <width>84</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Hero</string>
    </property>
   </widget>
  </widget>
